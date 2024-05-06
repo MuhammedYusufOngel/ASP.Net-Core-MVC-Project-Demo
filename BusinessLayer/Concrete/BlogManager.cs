@@ -33,6 +33,11 @@ namespace BusinessLayer.Concrete
             return blogdal.getById(id);
         }
 
+        public List<Blog> getBlogbyID(int id)
+        {
+            return blogdal.getAll(x => x.BlogID == id);
+        }
+
         public List<Blog> GetBlogListWithCategory()
         {
             return blogdal.GetListWithCategory();

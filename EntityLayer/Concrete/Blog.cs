@@ -19,17 +19,9 @@ namespace EntityLayer.Concrete
         public bool BlogStatus { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public int WriterID { get; set; }
+        public Writer Writer { get; set; }
         public List<Comment> Comments{ get; set; }
 
-        public Blog(int blogID, string blogTitle, string blogContent, string blogThumbnailImage, string blogImage, string blogCreateDate, bool blogStatus)
-        {
-            BlogID = blogID;
-            BlogTitle = blogTitle;
-            BlogContent = blogContent;
-            BlogThumbnailImage = blogThumbnailImage;
-            BlogImage = blogImage;
-            BlogCreateDate = blogCreateDate;
-            BlogStatus = blogStatus;
-        }
     }
 }

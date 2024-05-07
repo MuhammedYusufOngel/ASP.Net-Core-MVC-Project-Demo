@@ -1,0 +1,108 @@
+﻿
+@using EntityLayer.Concrete
+@model List<About>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<body>
+
+	<!--/main-->
+	<section class="main-content-w3layouts-agileits">
+		<div class="container">
+			<h3 class="tittle">About</h3>
+			<div class="row inner-sec">
+				<!--left-->
+				<div class="col-lg-8 left-blog-info-w3layouts-agileits text-left">
+					<div class="blog-grid-top">
+
+						<div class="blog_info_left_grid">
+							<a href="single.html">
+								<img src="~/CoreBlogTema/images/b5.jpg" class="img-fluid" alt="">
+							</a>
+						</div>
+						<h3>
+							Biz neyiz & Bu dünyaya neden geldik?
+						</h3>
+						@foreach(var item in Model)
+						{
+						<p>
+							@item.AboutDetails1
+						</p>
+						}
+					</div>
+				</div>
+				<!--//left-->
+				<!--right-->
+				<aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
+					<div class="right-blog-info text-left">
+
+						@await Html.PartialAsync("~/Views/NewsLetter/SubscribeMail.cshtml")
+
+						@await Html.PartialAsync("SocialMediaAbout.cshtml")
+
+						<div class="tech-btm">
+							<h4>Recent Posts</h4>
+
+							@await Component.InvokeAsync("WriterLastBlog")
+						</div>
+					</div>
+
+				</aside>
+				<!--//right-->
+			</div>
+		</div>
+	</section>
+	<!--//main--> 
+	<!-- js -->
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<!-- //js -->
+	<!--/ start-smoth-scrolling -->
+	<script src="js/move-top.js"></script>
+	<script src="js/easing.js"></script>
+	<script>
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 900);
+			});
+		});
+	</script>
+	<!--// end-smoth-scrolling -->
+
+	<script>
+		$(document).ready(function () {
+			/*
+									var defaults = {
+											containerID: 'toTop', // fading element id
+										containerHoverID: 'toTopHover', // fading element hover id
+										scrollSpeed: 1200,
+										easingType: 'linear'
+										};
+									*/
+
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+
+		});
+	</script>
+	<a href="#home" class="scroll" id="toTop" style="display: block;">
+		<span id="toTopHover" style="opacity: 1;"> </span>
+	</a>
+
+	<!-- //Custom-JavaScript-File-Links -->
+	<script src="js/bootstrap.js"></script>
+
+
+</body>
+
+</html>
+

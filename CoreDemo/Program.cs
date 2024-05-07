@@ -13,6 +13,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
@@ -22,6 +24,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Blog}/{action=BlogReadAll}/{id?}");
+    pattern: "{controller=Contact}/{action=Index}/{id?}");
 
 app.Run();

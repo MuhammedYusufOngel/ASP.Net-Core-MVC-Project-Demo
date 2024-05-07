@@ -17,16 +17,7 @@ namespace EntityLayer.Concrete
         public string WriterMail { get; set; }
         public string WriterPassword { get; set; }
         public bool WriterStatus { get; set; }
+        public List<Blog> Blogs { get; set; }
 
-        public Writer(int writerID, string writerName, string writerAbout, string writerImage, string writerMail, string writerPassword, bool writerStatus)
-        {
-            WriterID = writerID;
-            WriterName = writerName;
-            WriterAbout = writerAbout;
-            WriterImage = writerImage;
-            WriterMail = writerMail;
-            WriterPassword = writerPassword;
-            WriterStatus = writerStatus;
-        }
     }
 }

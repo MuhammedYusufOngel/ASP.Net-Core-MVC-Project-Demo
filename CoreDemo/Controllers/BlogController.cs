@@ -15,6 +15,7 @@ namespace CoreDemo.Controllers
 
         public IActionResult BlogReadAll(int id)
         {
+            ViewBag.id = id;
             var values = bm.getBlogbyID(id);
             return View(values);
         }

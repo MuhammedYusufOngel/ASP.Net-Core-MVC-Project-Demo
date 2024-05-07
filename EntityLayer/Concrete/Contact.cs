@@ -18,15 +18,5 @@ namespace EntityLayer.Concrete
         public DateTime ContactDate { get; set; }
         public bool ContactStatus { get; set; }
 
-        public Contact(int contactId, string contactUserName, string contactMail, string contactSubject, string contactMessage, DateTime contactDate, bool contactStatus)
-        {
-            ContactId = contactId;
-            ContactUserName = contactUserName;
-            ContactMail = contactMail;
-            ContactSubject = contactSubject;
-            ContactMessage = contactMessage;
-            ContactDate = contactDate;
-            ContactStatus = contactStatus;
-        }
     }
 }

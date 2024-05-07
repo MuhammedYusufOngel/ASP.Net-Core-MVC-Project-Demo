@@ -34,7 +34,7 @@ namespace DataAccessLayer.Repositories
             return c.Set<T>().Find(id);
         }
 
-        public List<T> getAll(Expression<Func<T, bool>> filter)
+        public List<T> GetAll(Expression<Func<T, bool>> filter)
         {
             return c.Set<T>().Where(filter).ToList();
         }

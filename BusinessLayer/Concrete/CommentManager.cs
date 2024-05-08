@@ -19,9 +19,9 @@ namespace BusinessLayer.Concrete
             this.commentDal = commentDal;
         }
 
-        public void AddComment(Comment comment)
+        public List<Comment> GetAll()
         {
-            commentDal.Add(comment);
+            throw new NotImplementedException();
         }
 
         public List<Comment> GetAllComments(int id)
@@ -29,5 +29,24 @@ namespace BusinessLayer.Concrete
             return commentDal.GetAll(x => x.BlogID == id);
         }
 
+        public Comment GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TAdd(Comment entity)
+        {
+            commentDal.Add(entity);
+        }
+
+        public void TRemove(Comment entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void TUpdate(Comment entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

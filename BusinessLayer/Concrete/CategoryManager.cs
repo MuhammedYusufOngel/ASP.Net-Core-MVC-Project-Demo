@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
+using System.Linq.Expressions;
 
 namespace BusinessLayer.Concrete
 {
@@ -13,29 +14,29 @@ namespace BusinessLayer.Concrete
             this.categoryDal = categoryDal;
         }
 
-        public void AddCategory(Category category)
-        {
-            categoryDal.Add(category);
-        }
-
-        public List<Category> GetAllCategories()
+        public List<Category> GetAll()
         {
             return categoryDal.GetAll();
         }
 
-        public Category GetCategory(int id)
+        public Category GetById(int id)
         {
             return categoryDal.getById(id);
         }
 
-        public void RemoveCategory(Category category)
+        public void TAdd(Category entity)
         {
-            categoryDal.Delete(category);
+            categoryDal.Add(entity);
         }
 
-        public void UpdateCategory(Category category)
+        public void TRemove(Category entity)
         {
-            categoryDal.Update(category);
+            categoryDal.Delete(entity);
+        }
+
+        public void TUpdate(Category entity)
+        {
+            categoryDal.Update(entity);
         }
     }
 }

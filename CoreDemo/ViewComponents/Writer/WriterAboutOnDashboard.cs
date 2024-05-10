@@ -1,16 +1,17 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Permissions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CoreDemo.ViewComponents.Writer
 {
-    public class WriterNotification : ViewComponent
+    public class WriterAboutOnDashboard : ViewComponent
     {
-        NotificationManager nm = new NotificationManager(new EFNotificationRepository());
+        WriterManager wm = new WriterManager(new EFWriterRepository());
+
         public IViewComponentResult Invoke()
         {
-            var values = nm.GetAll();
+            var values = wm.GetWriterById(1);
             return View(values);
         }
     }

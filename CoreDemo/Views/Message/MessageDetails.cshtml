@@ -1,0 +1,30 @@
+﻿@model EntityLayer.Concrete.Message2
+@{
+    ViewData["Title"] = "MessageDetails";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Message Page</h1>
+@Html.Label("#")
+@Html.TextBoxFor(x => x.MessageID, new { @class = "form-control"})
+<br />
+<br />
+@Html.Label("Sender")
+@Html.TextBoxFor(x => x.SenderWriter.WriterName, new { @class = "form-control"})
+<br />
+<br />
+@Html.Label("Subject")
+@Html.TextBoxFor(x => x.Subject, new { @class = "form-control"})
+<br />
+<br />
+@Html.Label("Details")
+@Html.TextBoxFor(x => x.MessageDetails, new { @class = "form-control"})
+<br />
+<br />
+@Html.Label("Date")
+@Html.TextBoxFor(x => x.MessageDate, new { @class = "form-control"})
+<br />
+<br />
+
+<button type="submit" class="btn btn-primary submit mb-4">Go to Messages</button>
+

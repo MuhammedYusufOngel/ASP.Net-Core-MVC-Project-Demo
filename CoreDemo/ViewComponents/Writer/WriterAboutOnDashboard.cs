@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -9,9 +10,12 @@ namespace CoreDemo.ViewComponents.Writer
     {
         WriterManager wm = new WriterManager(new EFWriterRepository());
 
+        Context c = new Context();
         public IViewComponentResult Invoke()
         {
-            var values = wm.GetWriterById(1);
+            var usermail = User.Identity.Name;
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var values = wm.GetWriterById(writerID);
             return View(values);
         }
     }

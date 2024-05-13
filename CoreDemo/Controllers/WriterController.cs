@@ -51,14 +51,15 @@ namespace CoreDemo.Controllers
         {
             return PartialView();
         }
-        [AllowAnonymous]
         [HttpGet]
         public IActionResult WriterEditResult()
         {
-            var values = wm.GetById(1);
+            var usermail = User.Identity.Name;
+            Context c = new Context();
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var values = wm.GetById(writerID);
             return View(values);
         }
-        [AllowAnonymous]
         [HttpPost]
         public IActionResult WriterEditResult(Writer p)
         {

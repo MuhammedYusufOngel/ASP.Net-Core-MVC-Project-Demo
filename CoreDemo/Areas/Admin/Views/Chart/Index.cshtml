@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div id="chartdiv" style="width:800px; height:600px">
+        <h2>Burası chart bro</h2>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+    //Load
+    google.charts.load('current', { 'packages':['corechart'] });
+    //After load call DrawOnLoad
+    google.charts.setOnLoadCallback(DrawOnLoad)
+
+
+    function DrawOnLoad()
+    {
+        $(function () {
+            $.ajax({
+                type:'GET',
+                url: '/Admin/Chart/categoryChart/',
+                //If you success
+                success: function (chartsdata){
+
+                    //Data = category
+                    var Data = chartsdata.jsonlist;
+                    //data = null (for now)
+                    var data = new google.visualization.DataTable();
+                    
+                    //Column name
+                    data.addColumn('string', 'categoryName');
+                    data.addColumn('number', 'categoryCount');
+
+                    //Add Row
+                    for(var i = 0;i < Data.length;i++){
+                        data.addRow([Data[i].categoryName, Data[i].categoryCount])
+                    }
+
+                    //PieChart = Circle Graph
+                    var chart = new google.visualization.PieChart(document.getElementById('chartdiv'));
+
+                    //Draw data and something else
+                    chart.draw(data,{
+                        title: "Google Chart Core Project",
+                        position: "top",
+                        fontsize: "16px"
+                    });
+                }
+            });
+        })
+    }
+</script>
+
+
+@section scripts{
+
+}

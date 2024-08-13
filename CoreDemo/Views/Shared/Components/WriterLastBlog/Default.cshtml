@@ -2,7 +2,7 @@
 @model List<Blog>
 
 <div class="tech-btm">
-	<h4>Other Articles of This Writer</h4>
+	<h4>Yazarın Diğer Yazıları</h4>
 
 	@foreach(var item in Model)
 	{
@@ -19,7 +19,7 @@
 			</h5>
 			<div class="sub-meta">
 				<span>
-					<i class="far fa-clock">@item.BlogCreateDate</i> 
+					<i class="far fa-clock">@item.BlogCreateDate.ToLongDateString()</i> 
 				</span>
 			</div>
 		</div>

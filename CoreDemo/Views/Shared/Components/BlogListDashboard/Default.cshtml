@@ -30,9 +30,9 @@
                                 <td>
                                     <label class="badge badge-gradient-success">@item.Category.CategoryName</label>
                                 </td>
-                                <td> @item.BlogCreateDate </td>
+                                <td> @item.BlogCreateDate.ToLongDateString()</td>
                                 <td>
-                                    <a href="/Blog/BlogReadAll/@item.BlogID" class="btn btn-dark">Details</a>
+                                    <a href="/Blog/BlogReadAll/@item.BlogID" class="btn btn-dark">Detaylar</a>
                                 </td>
                             </tr>
                             }

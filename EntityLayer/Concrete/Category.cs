@@ -14,6 +14,7 @@ namespace EntityLayer.Concrete
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
         public bool CategoryStatus { get; set; }
+        public int CategoryCount { get; set; }
         public List<Blog> Blogs { get; set; }
 
     }

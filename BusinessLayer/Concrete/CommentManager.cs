@@ -34,6 +34,11 @@ namespace BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
+        public List<Comment> GetCommentWithBlog()
+        {
+            return commentDal.GetListWithBlog();
+        }
+
         public void TAdd(Comment entity)
         {
             commentDal.Add(entity);

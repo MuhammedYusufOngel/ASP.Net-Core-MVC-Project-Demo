@@ -30,12 +30,16 @@ namespace BusinessLayer.Concrete
 
         public List<Message2> GetInboxListByWriter(int id)
         {
-            return message2Dal.GetListWithMessageByWriter(id);
+            return message2Dal.GetInBoxWithMessageByWriter(id);
+        }
+        public List<Message2> GetSendboxListByWriter(int id)
+        {
+            return message2Dal.GetSendBoxWithMessageByWriter(id);
         }
 
         public void TAdd(Message2 entity)
         {
-            throw new NotImplementedException();
+            message2Dal.Add(entity);
         }
 
         public void TRemove(Message2 entity)

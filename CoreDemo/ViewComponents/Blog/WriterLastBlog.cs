@@ -9,9 +9,9 @@ namespace CoreDemo.ViewComponents.Blog
     {
         BlogManager bm = new BlogManager(new EFBlogRepository());
 
-        public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke(int id)
         {
-            var values = bm.GetBlogListByWriter(1);
+            var values = bm.GetBlogListByWriter(id);
             return View(values);
         }
     }

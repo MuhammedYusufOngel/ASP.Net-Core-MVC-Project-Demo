@@ -6,6 +6,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -14,6 +15,15 @@ namespace CoreDemo.Controllers
 	public class WriterController : Controller
 	{
         WriterManager wm = new WriterManager(new EFWriterRepository());
+        UserManager um = new UserManager(new EFUserRepository());
+
+        private readonly UserManager<AppUser> userManager;
+
+        public WriterController(UserManager<AppUser> userManager)
+        {
+            this.userManager = userManager;
+        }
+
         [Authorize]
 		public IActionResult Index()
 		{
@@ -34,16 +44,9 @@ namespace CoreDemo.Controllers
         {
             return View();
         }
-        [AllowAnonymous]
         public IActionResult Test()
         {
             return View();
-        }
-
-        [AllowAnonymous]
-        public PartialViewResult WriterNavbarPartial()
-        {
-            return PartialView();
         }
 
         [AllowAnonymous]
@@ -52,44 +55,57 @@ namespace CoreDemo.Controllers
             return PartialView();
         }
         [HttpGet]
-        public IActionResult WriterEditResult()
+        public async Task<IActionResult> WriterEditResult()
         {
-            var usermail = User.Identity.Name;
-            Context c = new Context();
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
-            var values = wm.GetById(writerID);
-            return View(values);
+            var values = await userManager.FindByNameAsync(User.Identity.Name);
+            UserUpdateViewModel model = new UserUpdateViewModel();
+            model.mail = values.Email;
+            model.namesurname = values.NameSurname;
+            model.username = values.UserName;
+            model.imageurl = values.ImageUrl;
+            return View(model);
         }
         [HttpPost]
-        public IActionResult WriterEditResult(Writer p)
+        public async Task<IActionResult> WriterEditResult(UserUpdateViewModel model)
         {
-            WriterValidation w1 = new WriterValidation();
-            ValidationResult results = w1.Validate(p);
-            if(results.IsValid)
-            {
-                p.WriterImage = "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=338&ext=jpg&ga=GA1.1.34264412.1715126400&semt=ais";
-                wm.TUpdate(p);
-                return RedirectToAction("Index", "Dashboard");
-            }
-            else
-            {
-                foreach(var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
+            //WriterValidation w1 = new WriterValidation();
+            //ValidationResult results = w1.Validate(p);
+            //if(results.IsValid)
+            //{
+            //    p.WriterImage = "https://img.freepik.com/free-vector/isolated-young-handsome-man-different-poses-white-background-illustration_632498-859.jpg?size=338&ext=jpg&ga=GA1.1.34264412.1715126400&semt=ais";
+            //    wm.TUpdate(p);
+            //    return RedirectToAction("Index", "Dashboard");
+            //}
+            //else
+            //{
+            //    foreach(var item in results.Errors)
+            //    {
+            //        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+            //    }
+            //}
 
-            return View();
+            var values = await userManager.FindByNameAsync(User.Identity.Name);
+            values.NameSurname = model.namesurname;
+            values.ImageUrl = model.imageurl;
+            values.Email = model.mail;
+            values.UserName = model.username;
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            values.PasswordHash = userManager.PasswordHasher.HashPassword(values, model.password);
+            var result = await userManager.UpdateAsync(values);
+
+            if (result.Succeeded)
+                return RedirectToAction("Index", "Dashboard");
+
+            else
+                return View();
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public IActionResult WriterAdd()
         {
             return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public IActionResult WriterAdd(AddProfileImage p)
         {
@@ -113,5 +129,6 @@ namespace CoreDemo.Controllers
             wm.TAdd(w);
             return RedirectToAction("Index","Dashboard");
         }
+
     }
 }

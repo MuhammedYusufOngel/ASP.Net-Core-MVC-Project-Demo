@@ -4,9 +4,12 @@
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
-<h1>Edit Blog Page</h1>
+<h1>Blog Güncelleme</h1>
 @using(Html.BeginForm("EditBlog","Blog", FormMethod.Post))
 {
+    @Html.Label("Id")
+    @Html.TextBoxFor(x => x.BlogID, new { @class = "form-control"})
+    <br />
     @Html.Label("Blog Title")
     @Html.TextBoxFor(x => x.BlogTitle, new { @class = "form-control"})
     <br />
@@ -24,7 +27,8 @@
     <br />
     <br />
     @Html.Label("Blog Content")
-    @Html.TextAreaFor(x => x.BlogContent, 10, 3, new { @class = "form-control"})
+    <textarea class="form-control" name="blogContent" style="white-space: pre-wrap;" rows="5" cols="30">@Model.BlogContent</textarea>
+    //@Html.TextAreaFor(x => x.BlogContent, 10, 3, new { @class = "form-control"})
     <br />
     <br />
 

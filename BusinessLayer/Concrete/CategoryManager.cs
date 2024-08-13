@@ -19,6 +19,11 @@ namespace BusinessLayer.Concrete
             return categoryDal.GetAll();
         }
 
+        public List<Category> GetAllOrderByCount()
+        {
+            return categoryDal.GetAllOrderByCount();
+        }
+
         public Category GetById(int id)
         {
             return categoryDal.getById(id);

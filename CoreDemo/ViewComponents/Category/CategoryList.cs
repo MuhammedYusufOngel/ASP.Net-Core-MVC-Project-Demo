@@ -11,7 +11,7 @@ namespace CoreDemo.ViewComponents.Category
 
 		public IViewComponentResult Invoke()
 		{
-			var values = cm.GetAll();
+			var values = cm.GetAllOrderByCount();
 			return View(values);
 		}
 	}

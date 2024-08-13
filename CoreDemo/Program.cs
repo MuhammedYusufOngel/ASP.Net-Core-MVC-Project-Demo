@@ -1,3 +1,6 @@
+using DataAccessLayer.Concrete;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -6,6 +9,9 @@ using System.Net;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSession();
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
 
 //Authorization
 builder.Services.AddMvc(config =>
@@ -23,8 +29,23 @@ builder.Services.AddAuthentication(
         x.LoginPath = "/Login/Index";
     });
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
+    options.AccessDeniedPath = new PathString("/Login/AccessDenied");
+    options.LoginPath = "/Login/Index";
+    options.SlidingExpiration = true;
+});
+
+builder.Services.AddDbContext<Context>();
+builder.Services.AddIdentity<AppUser, AppRole>(x =>
+{
+    x.Password.RequireUppercase = false;
+    x.Password.RequireNonAlphanumeric = false;
+})
+    .AddEntityFrameworkStores<Context>();
+
 
 var app = builder.Build();
 
@@ -56,7 +77,7 @@ app.UseEndpoints(endpoints =>
 
     endpoints.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Admin}/{action=Index}/{id?}");
+        pattern: "{controller=Dashboard}/{action=Index}/{id?}");
 });
 
 app.Run();

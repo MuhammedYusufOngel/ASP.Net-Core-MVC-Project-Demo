@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EntityLayer.Concrete.Blog>
+﻿@using System.Globalization
+@model IEnumerable<EntityLayer.Concrete.Blog>
 
 @{
     ViewData["Title"] = "BlogReadAll";
@@ -29,25 +30,16 @@
 					<div class="blog-grid-top">
 						<div class="b-grid-top">
 							<div class="blog_info_left_grid">
-								<a href="single.html">
-									<img src="~/CoreBlogTema/images/b1.jpg" class="img-fluid" alt="">
-								</a>
+								<img src="@item.BlogImage" class="img-fluid" alt="">
 							</div>
 							<div class="blog-info-middle">
 								<ul>
 									<li>
-										<a href="#">
-											<i class="far fa-calendar-alt"></i> @item.BlogCreateDate </a>
+										<h6 style="color: white;">
+											<i class="far fa-calendar-alt"></i>
+											@item.BlogCreateDate.ToLongDateString()
+										</h6>
 									</li>
-									<li class="mx-2">
-										<a href="#">
-											<i class="far fa-thumbs-up"></i> 0 Likes</a>
-									</li>
-									<li>
-										<a href="#">
-											<i class="far fa-comment"></i> 0 Comments</a>
-									</li>
-									
 								</ul>
 							</div>
 						</div>
@@ -55,15 +47,14 @@
 						<h3>
 							<a href="single.html">@item.BlogTitle </a>
 						</h3>
-						<p>@item.BlogContent</p>
-						<a href="Blog/Index" class="btn btn-primary read-m">Blog Lists</a>
+						<p style="white-space: pre-wrap;">@item.BlogContent</p>
 					</div>
 					
 					}
 
 					@await Component.InvokeAsync("CommentListByBlog", new {id = ViewBag.id })
 
-					@await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")
+					@await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml", new {id = ViewBag.id})
 				</div>
 
 				<!--//left-->
@@ -75,48 +66,8 @@
 
 						@await Component.InvokeAsync("CategoryList")
 
-						@await Component.InvokeAsync("WriterLastBlog")
+						@await Component.InvokeAsync("WriterLastBlog", new {id = ViewBag.writerid })
 						
-						<div class="single-gd my-5 tech-btm">
-							<h4>Our Progress</h4>
-							<div class="progress">
-								<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0"
-								    aria-valuemax="100"></div>
-							</div>
-							<div class="progress">
-								<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-								    aria-valuemax="100"></div>
-							</div>
-							<div class="progress">
-								<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-								    aria-valuemax="100"></div>
-							</div>
-							<div class="progress">
-								<div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-								    aria-valuemax="100"></div>
-							</div>
-							<div class="progress">
-								<div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-								    aria-valuemax="100"></div>
-							</div>
-						</div>
-						<div class="single-gd tech-btm">
-							<h4>Recent Post</h4>
-							<div class="blog-grids">
-								<div class="blog-grid-left">
-									<a href="single.html">
-										<img src="~/CoreBlogTema/images/b1.jpg" class="img-fluid" alt="">
-									</a>
-								</div>
-								<div class="blog-grid-right">
-
-									<h5>
-										<a href="single.html">Pellentesque dui, non felis. Maecenas male</a>
-									</h5>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-						</div>
 					</div>
 
 				</aside>

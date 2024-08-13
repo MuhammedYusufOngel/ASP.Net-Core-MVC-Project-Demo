@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using BusinessLayer.Concrete;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CoreDemo.Controllers
 {
+    [AllowAnonymous]
     public class CommentController : Controller
     {
         CommentManager cm = new CommentManager(new EFCommentRepository());
@@ -13,8 +15,9 @@ namespace CoreDemo.Controllers
             return View();
         }
         [HttpGet]
-        public PartialViewResult PartialAddComment()
+        public PartialViewResult PartialAddComment(int id)
         {
+            ViewBag.Id = id;
             return PartialView();
         }
 
@@ -23,7 +26,6 @@ namespace CoreDemo.Controllers
         {
             p.CommentStatus = true;
             p.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.BlogID = 18;
             cm.TAdd(p);
             return PartialView();
         }

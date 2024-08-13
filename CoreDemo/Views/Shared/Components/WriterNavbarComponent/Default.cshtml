@@ -1,16 +1,15 @@
-﻿
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+﻿<nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
                 <div class="nav-profile-image">
-                    <img src="~/writer/assets/images/faces/face1.jpg" alt="profile">
+                    <img src="@ViewBag.image" alt="image">
                     <span class="login-status online"></span>
                     <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column">
-                    <span class="font-weight-bold mb-2">Writer Name</span>
-                    <span class="text-secondary text-small">Role</span>
+                    <span class="font-weight-bold mb-2">@ViewBag.name</span>
+                    <span class="text-secondary text-small">Yazar</span>
                 </div>
                 <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
             </a>
@@ -23,49 +22,55 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/Writer/WriterEditResult/">
-                <span class="menu-title">Profile</span>
+                <span class="menu-title">Profil</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/Blog/BlogListByWriter/">
-                <span class="menu-title">Blogs</span>
+                <span class="menu-title">Bloglar</span>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="~/Blog/BlogAdd/">
-                <span class="menu-title">New Blog</span>
+                <span class="menu-title">Yeni Blog</span>
                 <i class="mdi mdi-chart-bar menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="../../pages/tables/basic-table.html">
-                <span class="menu-title">My Messages</span>
+            <a class="nav-link" href="~/Message/InBox/">
+                <span class="menu-title">Gelen Mesajlar</span>
+                <i class="mdi mdi-message menu-icon"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="~/Message/SendBox/">
+                <span class="menu-title">Giden Mesajlar</span>
                 <i class="mdi mdi-message menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="~/Notification/AllNotification/">
-                <span class="menu-title">Notifications</span>
+                <span class="menu-title">Bildirimler</span>
                 <i class="mdi mdi-call-merge menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="~/Blog/Index/">
-                <span class="menu-title">Go to Site</span>
+                <span class="menu-title">Siteye Git</span>
                 <i class="mdi mdi-car menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="~/Writer/WriterEditResult/">
-                <span class="menu-title">Settings</span>
+                <span class="menu-title">Ayarlar</span>
                 <i class="mdi mdi-settings menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
-                <span class="menu-title">Exit</span>
+            <a class="nav-link" href="~/Login/LogOut/">
+                <span class="menu-title">Çıkış</span>
                 <i class="mdi mdi-logout-variant menu-icon"></i>
             </a>
         </li>

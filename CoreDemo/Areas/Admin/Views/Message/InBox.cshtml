@@ -39,17 +39,6 @@
         </div>
         <div class="col-lg-9 animated fadeInRight">
         <div class="mail-box-header">
-
-            <form method="get" action="index.html" class="float-right mail-search">
-                <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" name="search" placeholder="Search email">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-sm btn-primary">
-                            Search
-                        </button>
-                    </div>
-                </div>
-            </form>
             <h2>
                 Inbox (0)
             </h2>
@@ -100,12 +89,10 @@
     </div>
     </div>
 
-    <!-- Mainly scripts -->
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+                        for (let i = 0; i < jsonString.$values.length; i++) {
+                            const date = new Date(jsonString.$values[i].MessageDate);
+                            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                            const dateNew = date.toLocaleDateString('tr-TR', options);
 
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>

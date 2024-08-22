@@ -11,7 +11,6 @@
 <body>
 
 <div id="wrapper">
-
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 @foreach (var item in Model)
@@ -19,13 +18,12 @@
                     <div class="col-md-3">
                         <div class="ibox">
                             <div class="ibox-content product-box">
-
                                 <div>
-                                    <img src="@item.BlogImage" height="225" width="400"/>
+                                    <img src="@item.BlogImage" height="225" style="display: block; margin: auto;" />
                                 </div>
                                 <div class="product-desc">
                                     <span class="product-price">
-                                        @item.BlogCreateDate
+                                        @item.BlogCreateDate.ToLongDateString()
                                     </span>
                                     <small class="text-muted">@item.Category.CategoryName</small>
                                     <a href="#" class="product-name">@item.BlogTitle</a>

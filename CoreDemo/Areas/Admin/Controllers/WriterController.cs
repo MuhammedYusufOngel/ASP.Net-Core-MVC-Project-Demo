@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 namespace CoreDemo.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class WriterController : Controller
     {
         public IActionResult Index()

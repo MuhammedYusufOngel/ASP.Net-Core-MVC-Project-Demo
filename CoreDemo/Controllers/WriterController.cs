@@ -103,7 +103,8 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult WriterAdd()
         {
-            return View();
+            Writer w = new Writer();
+            return View(w);
         }
 
         [HttpPost]

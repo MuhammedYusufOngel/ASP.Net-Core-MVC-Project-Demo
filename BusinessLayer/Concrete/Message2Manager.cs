@@ -44,12 +44,12 @@ namespace BusinessLayer.Concrete
 
         public void TRemove(Message2 entity)
         {
-            throw new NotImplementedException();
+            message2Dal.Delete(entity);
         }
 
         public void TUpdate(Message2 entity)
         {
-            throw new NotImplementedException();
+            message2Dal.Update(entity);
         }
     }
 }

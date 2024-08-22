@@ -12,7 +12,7 @@ using Category = EntityLayer.Concrete.Category;
 namespace CoreDemo.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         CategoryManager cm = new CategoryManager(new EFCategoryRepository());

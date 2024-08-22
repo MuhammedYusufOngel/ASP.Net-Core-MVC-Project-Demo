@@ -5,26 +5,31 @@
 }
 
 <h1>Message Page</h1>
+
 @Html.Label("#")
-@Html.TextBoxFor(x => x.MessageID, new { @class = "form-control"})
+@Html.TextBoxFor(x => x.MessageID, new { @class = "form-control" })
 <br />
 <br />
-@Html.Label("Sender")
-@Html.TextBoxFor(x => x.SenderWriter.WriterID, new { @class = "form-control"})
+@Html.Label("Gönderen Kişi")
+@Html.TextBoxFor(x => x.SenderWriter.WriterName, new { @class = "form-control"})
 <br />
 <br />
-@Html.Label("Subject")
+@Html.Label("Gönderilen Kişi")
+@Html.TextBoxFor(x => x.ReceiverWriter.WriterName, new { @class = "form-control"})
+<br />
+<br />
+@Html.Label("Konu")
 @Html.TextBoxFor(x => x.Subject, new { @class = "form-control"})
 <br />
 <br />
-@Html.Label("Details")
+@Html.Label("Detaylar")
 @Html.TextBoxFor(x => x.MessageDetails, new { @class = "form-control"})
 <br />
 <br />
-@Html.Label("Date")
+@Html.Label("Tarih")
 @Html.TextBoxFor(x => x.MessageDate, new { @class = "form-control"})
 <br />
 <br />
 
-<button type="submit" class="btn btn-primary submit mb-4">Go to Messages</button>
+<a href="/Message/InBox" class="btn btn-behance">Mesajlara Geri Dön</a>
 

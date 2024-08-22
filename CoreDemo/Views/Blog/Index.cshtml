@@ -2,13 +2,44 @@
 @model List<Blog>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ana Sayfa";
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 
 <section class="main-content-w3layouts-agileits">
 		<div class="container">
-			<h3 class="tittle">Blogs</h3>
+			<div class="row">
+				<div class="col-lg-12">
+				<h2 class="tittle" style="text-align: center;">In city, I feel my spirit is contained</h2>
+				</div>
+				<br />
+				<div class="col-lg-12">
+					<h2 class="tittle" style="text-align: center;">Like neon inside my glass, they form my brain</h2>
+				</div>
+				<br />
+				<br />
+				<div class="col-lg-12">
+				<h4 class="tittle" style="text-align: center;">-Bandito, Twenty One Pilots</h4>
+				</div>
+				<br />
+				<br />
+				<br />
+				<div class="col-lg-12">
+					<div class="video-container" style="text-align: center">
+						<video id="myVideo" class="card-img-top img-fluid" alt="" autoplay loop muted>
+							<source src="~/the-last-of-us-part-ii.960x540.mp4" type="video/mp4" class="card-img-top img-fluid">
+							Tarayıcınız video etiketini desteklemiyor.
+						</video>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<br />
+		<br />
+		<br />
+		<div class="container">
+			<h3 class="tittle">Bloglar</h3>
 			<div class="inner-sec">
 				<!--left-->
 				<div class="left-blog-info-w3layouts-agileits text-left">
@@ -16,9 +47,9 @@
 						@foreach(var item in Model)
 						{
 						<div class="col-lg-4 card">
-							<a href="single.html">
-								<img src="@item.BlogThumbnailImage" class="card-img-top img-fluid" height="250" width="400" alt="">
-							</a>
+							<div>
+								<img src="@item.BlogThumbnailImage" style="display: block; margin: auto; max-height: 225px; max-width: 300px; " alt="">
+							</div>
 							<div class="card-body">
 								<ul class="blog-icons my-4">
 									<li>

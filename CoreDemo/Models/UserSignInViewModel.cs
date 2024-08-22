@@ -7,10 +7,10 @@ namespace CoreDemo.Models
     {
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Please enter username")]
-        public string username { get; set; }
+        public string? username { get; set; }
 
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Please enter password")]
-        public string password { get; set; }
+        public string? password { get; set; }
     }
 }

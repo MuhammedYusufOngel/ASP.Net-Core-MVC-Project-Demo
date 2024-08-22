@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="WebForms\" />
     <Folder Include="wwwroot\WriterImageFiles\" />
   </ItemGroup>
 

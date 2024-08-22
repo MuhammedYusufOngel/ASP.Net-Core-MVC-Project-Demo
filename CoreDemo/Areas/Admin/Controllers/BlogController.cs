@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 namespace CoreDemo.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class BlogController : Controller
     {
         public IActionResult ExportStaticExcelBlogList()

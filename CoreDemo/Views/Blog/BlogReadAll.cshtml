@@ -30,7 +30,7 @@
 					<div class="blog-grid-top">
 						<div class="b-grid-top">
 							<div class="blog_info_left_grid">
-								<img src="@item.BlogImage" class="img-fluid" alt="">
+								<img src="@item.BlogImage" class="img-fluid" style="display:flex; margin: auto;" alt="">
 							</div>
 							<div class="blog-info-middle">
 								<ul>
@@ -47,7 +47,7 @@
 						<h3>
 							<a href="single.html">@item.BlogTitle </a>
 						</h3>
-						<p style="white-space: pre-wrap;">@item.BlogContent</p>
+						<p style="white-space: pre-wrap;">@Html.Raw(item.BlogContent)</p>
 					</div>
 					
 					}

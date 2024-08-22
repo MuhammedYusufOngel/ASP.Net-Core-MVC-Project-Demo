@@ -20,7 +20,7 @@ namespace BusinessLayer.Concrete
 
         public List<AppUser> GetAll()
         {
-            throw new NotImplementedException();
+            return userDal.GetAll();
         }
 
         public AppUser GetById(int id)

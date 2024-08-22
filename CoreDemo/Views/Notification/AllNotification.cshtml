@@ -6,19 +6,22 @@
 }
 
 <h1>All Notification</h1>
-<table class="table table-bordered">
-    <tr>
-        <th>#</th>
-        <th>Notification</th>
-        <th>Date</th>
-    </tr>
 
-    @foreach(var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table table-bordered">
         <tr>
-            <td>@item.NotificationID</td>
-            <td>@item.NotificationDetails</td>
-            <td>@item.NotificationDate</td>
+            <th>#</th>
+            <th>Notification</th>
+            <th>Date</th>
         </tr>
-    }
-</table>
+
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.NotificationID</td>
+                <td>@item.NotificationDetails</td>
+                <td>@item.NotificationDate</td>
+            </tr>
+        }
+    </table>
+</div>

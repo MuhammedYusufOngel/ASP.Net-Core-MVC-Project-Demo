@@ -19,7 +19,8 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            UserSignUpViewModel user = new UserSignUpViewModel();
+            return View(user);
         }
 
         [HttpPost]

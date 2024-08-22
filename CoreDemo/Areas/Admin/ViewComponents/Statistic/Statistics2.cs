@@ -11,7 +11,7 @@ namespace CoreDemo.Areas.Admin.ViewComponents.Statistic
         public IViewComponentResult Invoke()
         {
             ViewBag.recentBlogTitle = c.Blogs.OrderByDescending(y => y.BlogID).Select(x => x.BlogTitle).Take(1).FirstOrDefault();
-            ViewBag.recentBlogDate = c.Blogs.OrderByDescending(y => y.BlogID).Select(x => x.BlogCreateDate).Take(1).FirstOrDefault();
+            ViewBag.recentBlogDate = c.Blogs.OrderByDescending(y => y.BlogID).Select(x => x.BlogCreateDate).Take(1).FirstOrDefault().ToLongDateString();
             ViewBag.totalComments = c.Comments.Count();
             return View();
         }

@@ -23,6 +23,9 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            if (User.Identity.Name != null)
+                return RedirectToAction("Index", "Dashboard");
+
             UserSignInViewModel model = new UserSignInViewModel();
             return View(model);
         }
@@ -32,12 +35,15 @@ namespace CoreDemo.Controllers
         {
             if(ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(p.username, p.password, true, true);
+                if(signInManager != null)
+                {
+                    var result = await signInManager.PasswordSignInAsync(p.username, p.password, true, true);
 
-                if(result.Succeeded)
-                    return RedirectToAction("Index", "Dashboard");
-                else
-                    return RedirectToAction("Index", "Login");
+                    if (result.Succeeded)
+                        return RedirectToAction("Index", "Dashboard");
+                    else
+                        return RedirectToAction("Index", "Login");
+                }
             }
             
             return View();

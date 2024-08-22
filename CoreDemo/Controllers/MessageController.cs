@@ -33,12 +33,25 @@ namespace CoreDemo.Controllers
         public IActionResult MessageDetails(int id)
         {
             var value = mm.GetById(id);
+            value.SenderWriter = c.Writers.Where(x => x.WriterID == value.SenderID).FirstOrDefault();
+            value.ReceiverWriter = c.Writers.Where(x => x.WriterID == value.ReceiverID).FirstOrDefault();
             return View(value);
         }
 
         [HttpGet]
         public IActionResult SendMessage()
         {
+            UserManager um = new UserManager(new EFUserRepository());
+            var users = um.GetAll();
+
+            List<SelectListItem> userValues = (from x in users.ToList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.NameSurname,
+                                                   Value = x.Id.ToString()
+                                               }).ToList();
+
+            ViewBag.users = userValues;
             return View();
         }
 

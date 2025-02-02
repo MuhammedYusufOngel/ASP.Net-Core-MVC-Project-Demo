@@ -6,7 +6,6 @@
 - Entity Framework
 - Ajax
 - SignalR
-- Identity
 - ASP.NET Identity
 - Html
 - Css
